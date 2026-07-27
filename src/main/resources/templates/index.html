@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NexusGate | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-800 mb-6">NexusGate - Control de Accesos</h1>
+        
+        <!-- Contador de Aforo -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold">Personas dentro del local:</h2>
+            <p id="aforo-count" class="text-5xl font-bold text-green-600">0</p>
+        </div>
+
+        <!-- Tabla de Usuarios -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Usuarios Registrados</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b">
+                        <th class="py-2">Nombre</th>
+                        <th>Email</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table">
+                    <!-- Los datos se cargarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Aquí conectaremos con tu API de Render más adelante
+        const API_URL = "https://tu-url-de-render.onrender.com/api/v1";
+        
+        async function loadUsers() {
+            try {
+                // Si la API está Live, esto traerá los datos
+                const response = await fetch(`${API_URL}/users`);
+                const result = await response.json();
+                console.log(result);
+            } catch (error) {
+                console.error("Error cargando usuarios:", error);
+            }
+        }
+        loadUsers();
+    </script>
+</body>
+</html>
